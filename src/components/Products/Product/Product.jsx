@@ -1,0 +1,45 @@
+import React from "react";
+import { Card, CardMedia, CardContent, Typography } from "@mui/material";
+
+import useStyles from "./styles";
+const Product = ({ product }) => {
+  const classes = useStyles();
+
+  const onSale = product.price !== product.msrp;
+
+  return (
+    <div>
+      <Card className={classes.root}>
+        <CardMedia
+          component="img"
+          className={classes.media}
+          image={product.thumbnailImageUrl}
+          alt={product.title[0]}
+        />
+        <CardContent>
+          <div className={classes.cardContent}>
+            <Typography variant="h6" gutterBottom>
+              {product.brand}
+            </Typography>
+            <Typography variant="subtitle1" gutterBottom>
+              {product.name}
+            </Typography>
+            <div className={classes.priceContainer}>
+              <Typography variant="subtitle1">{`$${product.msrp}`} </Typography>
+              {onSale ? (
+                <Typography
+                  variant="subtitle1"
+                  className={classes.salePrice}
+                >{`$${product.price}`}</Typography>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+export default Product;
