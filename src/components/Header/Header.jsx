@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { AppBar, Toolbar, Typography, TextField, Box } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
@@ -7,11 +7,14 @@ import { Button } from "@mui/material";
 
 import { fetchSearchData } from "../../api";
 
-const Header = ({ searchValue, setSearchValue, setProducts }) => {
+const Header = ({ setSearchValue, setProducts }) => {
+  const searchText = useRef("");
   const classes = useStyles();
-  const handleSubmit = async () => {
-    const products = await fetchSearchData(searchValue);
+  const handleClick = async (e) => {
+    e.preventDefault();
+    const products = await fetchSearchData(searchText.current.value);
     setProducts(products);
+    setSearchValue(searchText.current.value);
     console.log(products);
   };
   return (
@@ -33,11 +36,12 @@ const Header = ({ searchValue, setSearchValue, setProducts }) => {
               id="search-text"
               label="Search..."
               variant="filled"
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
+              inputRef={searchText}
             />
+            <Button onClick={handleClick} className={classes.button}>
+              Submit
+            </Button>
           </div>
-          <Button onClick={handleSubmit}>Submit</Button>
         </Box>
       </Toolbar>
     </AppBar>

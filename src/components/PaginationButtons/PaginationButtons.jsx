@@ -2,7 +2,7 @@ import React from "react";
 import Pagination from "@mui/material/Pagination";
 import useStyles from "./styles";
 
-const PaginationButtons = ({ currentPage, setCurrentPage }) => {
+const PaginationButtons = ({ setCurrentPage, numPages }) => {
   const classes = useStyles();
 
   const handleChangePage = (event, value) => {
@@ -11,7 +11,7 @@ const PaginationButtons = ({ currentPage, setCurrentPage }) => {
   return (
     <div className={classes.content}>
       <Pagination
-        count={10}
+        count={numPages}
         onChange={handleChangePage}
         showFirstButton
         showLastButton

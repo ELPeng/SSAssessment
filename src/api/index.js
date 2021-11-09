@@ -8,9 +8,8 @@ export const fetchSearchData = async (query) => {
     try {
       const response = await fetch(changeableUrl);
       const { results } = await response.json();
-      console.log(results.length);
 
-      if (!results.length) return `No products for ${query}`;
+      if (!results.length) return `No products found for ${query}...`;
       console.log(results);
       return results;
     } catch (error) {
@@ -31,6 +30,25 @@ export const fetchPageData = async (query, page) => {
       if (!results.length) return `No products for ${query}`;
       console.log(results);
       return results;
+    } catch (error) {
+      return error;
+    }
+  }
+};
+
+export const fetchPagination = async (query) => {
+  let changeableUrl = url;
+  // need to update to clean up query later
+  if (query) {
+    changeableUrl = `${url}&q=${query}&resultsFormat=native}`;
+    try {
+      const response = await fetch(changeableUrl);
+      const {
+        pagination: { totalPages },
+      } = await response.json();
+      if (!totalPages) return null;
+      console.log(totalPages);
+      return totalPages;
     } catch (error) {
       return error;
     }
