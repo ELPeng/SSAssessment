@@ -18,7 +18,10 @@ function App() {
         setSearchValue={setSearchValue}
       />
       <Products products={products} />
-      <PaginationButtons />
+      <PaginationButtons
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 }

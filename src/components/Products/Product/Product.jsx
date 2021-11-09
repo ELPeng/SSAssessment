@@ -21,11 +21,16 @@ const Product = ({ product }) => {
             <Typography variant="h6" gutterBottom>
               {product.brand}
             </Typography>
-            <Typography variant="subtitle1" gutterBottom>
+            <Typography variant="subtitle1" fontSize={14} gutterBottom>
               {product.name}
             </Typography>
             <div className={classes.priceContainer}>
-              <Typography variant="subtitle1">{`$${product.msrp}`} </Typography>
+              <Typography
+                variant="subtitle1"
+                className={onSale ? classes.msrpSale : ""}
+              >
+                {`$${product.msrp}`}{" "}
+              </Typography>
               {onSale ? (
                 <Typography
                   variant="subtitle1"

@@ -9,15 +9,28 @@ export default makeStyles((theme) => ({
   },
   root: {
     flexGrow: 1,
+    cursor: "pointer",
+    "&:hover": {
+      boxShadow: "0 0 8px rgba(33,33,33,.4)",
+    },
+  },
+  cardContent: {
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "center",
   },
   priceContainer: {
     display: "flex",
     flexDirection: "row",
-    fontSize: "1em",
+    justifyContent: "center",
   },
   salePrice: {
     color: "#3a23ad",
     fontWeight: 900,
-    marginLeft: 20,
+  },
+  msrpSale: {
+    color: "#a6a6a6",
+    textDecoration: "line-through",
+    paddingRight: 10,
   },
 }));
