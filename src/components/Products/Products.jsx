@@ -8,6 +8,7 @@ import useStyles from "./styles";
 const Products = ({ products }) => {
   const classes = useStyles();
   console.log(products);
+  if (!products) return null;
   return (
     <main className={classes.content}>
       <h1>Products</h1>
