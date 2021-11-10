@@ -2,14 +2,9 @@ const url = "http://api.searchspring.net/api/search/search.json?siteId=scmq7n";
 
 // Fetch search results and retrieve pagination prop
 export const fetchPageData = async (query, page) => {
-  let changeableUrl = url;
+  // Checks for empty search after cleaning url
   let filteredQuery = query.replace(/[^a-zA-Z ]/g, "");
-
-  console.log({ query });
-  console.log({ page });
-
-  // Fetch all products if search is empty or contains invalid characters
-  changeableUrl = filteredQuery
+  let changeableUrl = filteredQuery
     ? `${url}&q=${filteredQuery}&resultsFormat=native&page=${page}`
     : `${url}&resultsFormat=native&page=${page}`;
   try {

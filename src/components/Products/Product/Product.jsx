@@ -1,12 +1,12 @@
 import React from "react";
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
-
+import FALLBACK_IMAGE from "../../../photos/no-image.png";
 import useStyles from "./styles";
 const Product = ({ product }) => {
   const classes = useStyles();
 
   const onSale = product.price !== product.msrp;
-
+  const onMediaFallback = (event) => (event.target.src = FALLBACK_IMAGE);
   return (
     <div>
       <Card className={classes.root}>
@@ -14,6 +14,7 @@ const Product = ({ product }) => {
           component="img"
           className={classes.media}
           image={product.thumbnailImageUrl}
+          onError={onMediaFallback}
           alt={product.title[0]}
         />
         <CardContent>
@@ -35,14 +36,12 @@ const Product = ({ product }) => {
               ) : (
                 <Typography variant="subtitle1">Sold Out</Typography>
               )}
-              {onSale ? (
+              {onSale && (
                 <Typography
                   variant="subtitle1"
                   className={classes.salePrice}
                   fontWeight="bold"
                 >{`$${product.price}`}</Typography>
-              ) : (
-                ""
               )}
             </div>
           </div>

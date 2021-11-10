@@ -21,10 +21,8 @@ function App() {
   const [numPages, setNumPages] = useState(1);
   const [pageRange, setPageRange] = useState({});
   const [totalProducts, setTotalProducts] = useState("");
-  console.log({ currentPage });
-  console.log({ searchValue });
-  console.log({ pageRange });
-  // Updates product data and page info when the page changes
+
+  // Updates product data and page info on page change
   useEffect(() => {
     const fetchAPIData = async () => {
       const { results, pagination } = await fetchPageData(

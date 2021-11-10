@@ -27,7 +27,7 @@ const Products = ({ products, searchValue, range, totalProducts }) => {
 
       <div className={classes.toolbar} />
       <Grid container justifyContent="center" spacing={4}>
-        {products.map((product, i) => {
+        {products.map((product) => {
           return (
             <Grid item key={product.uid} xs={12} sm={6} md={4} lg={3}>
               <Product product={product} />

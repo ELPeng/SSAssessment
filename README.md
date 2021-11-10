@@ -7,3 +7,8 @@
 - Special characters (!@#$%, etc.) will be cleaned from the search query.
 - If only symbols are present in the search, it will be treated as an empty search and retrieve all products.
 - If no product matches are found, the "No Products Found" component will be rendered.
+
+## Error Handling with Response Data
+
+- Some products did not appear to have any pricing data. I went ahead and changed the price display on the product card to "Sold Out" in those instances
+- Some products had broken image urls - I uploaded a default photo to be used on error
