@@ -8,7 +8,13 @@ export default makeStyles((theme) => ({
     },
   },
   box: {
-    width: "50%",
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: "40%",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "30%",
+    },
   },
   //   search: {
   //     position: "relative",
@@ -26,11 +32,11 @@ export default makeStyles((theme) => ({
   },
   searchContainer: {
     display: "flex",
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
+    // width: "100%",
+    // [theme.breakpoints.up("sm")]: {
+    //   marginLeft: theme.spacing(3),
+    //   width: "auto",
+    // },
     // backgroundColor: alpha(theme.palette.common.white, 0.15),
     // paddingLeft: "20px",
     // paddingRight: "20px",

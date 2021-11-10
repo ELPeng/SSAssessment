@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 
 import useStyles from "./styles";
@@ -6,9 +6,7 @@ const Product = ({ product }) => {
   const classes = useStyles();
 
   const onSale = product.price !== product.msrp;
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+
   return (
     <div>
       <Card className={classes.root}>

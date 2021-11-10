@@ -15,5 +15,6 @@ export default makeStyles((theme) => ({
   },
   list: {
     listStylePosition: "inside",
+    fontFamily: "Roboto",
   },
 }));

@@ -28,7 +28,6 @@ export const fetchPagination = async (query) => {
     const response = await fetch(changeableUrl);
     const { pagination } = await response.json();
     if (!pagination.totalPages) return null;
-    console.log({ pagination });
     return pagination;
   } catch (error) {
     return error;

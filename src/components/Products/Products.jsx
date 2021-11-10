@@ -1,10 +1,9 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material";
-
 import Product from "./Product/Product";
 
 import useStyles from "./styles";
-import NoResults from "../NoResults/NoResults";
+import NoResults from "./NoResults/NoResults";
 
 const Products = ({ products, searchValue, range, totalProducts }) => {
   const classes = useStyles();
@@ -16,8 +15,7 @@ const Products = ({ products, searchValue, range, totalProducts }) => {
       <Typography variant="h3" gutterBottom>
         Products
       </Typography>
-
-      <Typography variant="h5">
+      <Typography variant="h6">
         SHOWING {range.begin} - {range.end} OF {totalProducts} RESULTS FOR
         {searchValue.replace(/[^a-zA-Z ]/g, "")
           ? `"${searchValue.toUpperCase()}"`
