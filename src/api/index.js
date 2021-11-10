@@ -38,40 +38,34 @@ const url = "http://api.searchspring.net/api/search/search.json?siteId=scmq7n";
 
 export const fetchPageData = async (query, page) => {
   let changeableUrl = url;
-  // need to update to clean up query later
-  if (query) {
-    changeableUrl = `${url}&q=${query}&resultsFormat=native&page=${page}`;
-    try {
-      const response = await fetch(changeableUrl);
-      const { results } = await response.json();
+  //   need to update to clean up query later
 
-      if (!results.length) return null;
-      console.log(results);
-      return results;
-    } catch (error) {
-      return error;
-    }
+  changeableUrl = query
+    ? `${url}&q=${query}&resultsFormat=native&page=${page}`
+    : `${url}&resultsFormat=native`;
+  try {
+    const response = await fetch(changeableUrl);
+    const { results, pagination } = await response.json();
+
+    if (!results.length) return { results: null, pagination };
+    console.log({ results });
+    return { results, pagination };
+  } catch (error) {
+    return error;
   }
 };
 
 export const fetchPagination = async (query) => {
   let changeableUrl = url;
   // need to update to clean up query later
-  if (query) {
-    changeableUrl = `${url}&q=${query}&resultsFormat=native}`;
-    try {
-      const response = await fetch(changeableUrl);
-      const {
-        pagination: { totalPages },
-        pagination: { begin },
-        pagination: { end },
-        pagination: { totalResults },
-      } = await response.json();
-      if (!totalPages) return null;
-      console.log({ totalPages, begin, end, totalResults });
-      return totalPages;
-    } catch (error) {
-      return error;
-    }
+  changeableUrl = `${url}&q=${query}&resultsFormat=native}`;
+  try {
+    const response = await fetch(changeableUrl);
+    const { pagination } = await response.json();
+    if (!pagination.totalPages) return null;
+    console.log({ pagination });
+    return pagination;
+  } catch (error) {
+    return error;
   }
 };

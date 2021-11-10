@@ -20,8 +20,8 @@ const Header = ({ setSearchValue, setProducts, setCurrentPage }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const products = await fetchPageData(searchText, 1);
-    setProducts(products);
+    const { results } = await fetchPageData(searchText, 1);
+    setProducts(results);
     setSearchValue(searchText);
     setSearchText("");
     setCurrentPage(1);
@@ -40,7 +40,6 @@ const Header = ({ setSearchValue, setProducts, setCurrentPage }) => {
             </IconButton>
             <TextField
               className={classes.searchInput}
-              error
               label="Search for Brand, Color, Size..."
               variant="filled"
               size="small"

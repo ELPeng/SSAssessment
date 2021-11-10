@@ -91,18 +91,31 @@ const theme = createTheme({
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [searchValue, setSearchValue] = useState("");
   const [numPages, setNumPages] = useState(1);
+  const [pageRange, setPageRange] = useState({});
+  const [totalProducts, setTotalProducts] = useState("");
 
   useEffect(async () => {
-    const pageProducts = await fetchPageData(searchValue, currentPage);
-    setProducts(pageProducts);
+    const { results, pagination } = await fetchPageData(
+      searchValue,
+      currentPage
+    );
+    const { begin, end, totalResults } = pagination;
+    setProducts(results);
+    setTotalProducts(totalResults);
+    setPageRange({ begin, end });
   }, [currentPage]);
 
   useEffect(async () => {
-    const numPages = await fetchPagination(searchValue);
-    setNumPages(numPages);
+    const pagination = await fetchPagination(searchValue);
+    if (pagination) {
+      setNumPages(pagination.totalPages);
+      setTotalProducts(pagination.totalResults);
+    } else {
+      setNumPages(1);
+    }
   }, [searchValue]);
 
   return (
@@ -118,6 +131,8 @@ function App() {
           searchValue={searchValue}
           setCurrentPage={setCurrentPage}
           numPages={numPages}
+          range={pageRange}
+          totalProducts={totalProducts}
         />
         <PaginationButtons
           currentPage={currentPage}

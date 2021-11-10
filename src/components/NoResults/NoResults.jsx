@@ -14,13 +14,11 @@ const NoResults = ({ value }) => {
       <Typography variant="h5" sx={{ fontWeight: "bold" }}>
         Suggestions
       </Typography>
-      <Typography variant="body1">
-        <ul className={classes.list}>
-          <li>Check for misspellings.</li>
-          <li>Remove possible redundant keywords (ie. "products").</li>
-          <li>Use other words to describe what you are searching for.</li>
-        </ul>
-      </Typography>
+      <ul className={classes.list}>
+        <li>Check for misspellings.</li>
+        <li>Remove possible redundant keywords (ie. "products").</li>
+        <li>Use other words to describe what you are searching for.</li>
+      </ul>
     </div>
   );
 };

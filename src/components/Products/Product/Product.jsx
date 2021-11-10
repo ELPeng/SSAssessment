@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 
 import useStyles from "./styles";
@@ -6,7 +6,9 @@ const Product = ({ product }) => {
   const classes = useStyles();
 
   const onSale = product.price !== product.msrp;
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <Card className={classes.root}>
@@ -25,12 +27,16 @@ const Product = ({ product }) => {
               {product.name}
             </Typography>
             <div className={classes.priceContainer}>
-              <Typography
-                variant="subtitle1"
-                className={onSale ? classes.msrpSale : ""}
-              >
-                {`$${product.msrp}`}
-              </Typography>
+              {product.msrp ? (
+                <Typography
+                  variant="subtitle1"
+                  className={onSale ? classes.msrpSale : ""}
+                >
+                  {`$${product.msrp}`}
+                </Typography>
+              ) : (
+                <Typography variant="subtitle1">Sold Out</Typography>
+              )}
               {onSale ? (
                 <Typography
                   variant="subtitle1"

@@ -6,16 +6,31 @@ import Product from "./Product/Product";
 import useStyles from "./styles";
 import NoResults from "../NoResults/NoResults";
 
-const Products = ({ products, searchValue, setCurrentPage }) => {
+const Products = ({
+  products,
+  searchValue,
+  setCurrentPage,
+  numPages,
+  range,
+  totalProducts,
+}) => {
   const classes = useStyles();
 
-  console.log(products);
   if (!products) return <NoResults value={searchValue} />;
-  //   `NO RESULTS FOR "${searchValue.toUpperCase()}" FOUND."`;
+
   return (
     <main className={classes.content}>
-      <Typography variant="h3">Products</Typography>
-      <Typography variant="body1">Products</Typography>
+      <Typography variant="h3" gutterBottom>
+        Products
+      </Typography>
+      {searchValue ? (
+        <Typography variant="h5">
+          SHOWING {range.begin} - {range.end} OF {totalProducts} RESULTS FOR "
+          {searchValue.toUpperCase()}"
+        </Typography>
+      ) : (
+        ""
+      )}
 
       <div className={classes.toolbar} />
       <Grid container justifyContent="center" spacing={4}>
