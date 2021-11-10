@@ -21,29 +21,36 @@ function App() {
   const [numPages, setNumPages] = useState(1);
   const [pageRange, setPageRange] = useState({});
   const [totalProducts, setTotalProducts] = useState("");
-
   console.log({ currentPage });
-  console.log({ products });
+  console.log({ searchValue });
+  console.log({ pageRange });
+  // Updates product data and page info when the page changes
+  useEffect(() => {
+    const fetchAPIData = async () => {
+      const { results, pagination } = await fetchPageData(
+        searchValue,
+        currentPage
+      );
+      const { begin, end, totalResults } = pagination;
+      setProducts(results);
+      setTotalProducts(totalResults);
+      setPageRange({ begin, end });
+    };
+    fetchAPIData();
+  }, [currentPage, searchValue]);
 
-  useEffect(async () => {
-    const { results, pagination } = await fetchPageData(
-      searchValue,
-      currentPage
-    );
-    const { begin, end, totalResults } = pagination;
-    setProducts(results);
-    setTotalProducts(totalResults);
-    setPageRange({ begin, end });
-  }, [currentPage]);
-
-  useEffect(async () => {
-    const pagination = await fetchPagination(searchValue);
-    if (pagination) {
-      setNumPages(pagination.totalPages);
-      setTotalProducts(pagination.totalResults);
-    } else {
-      setNumPages(1);
-    }
+  // Updates the number of total pages and results on product search
+  useEffect(() => {
+    const fetchAPIData = async () => {
+      const pagination = await fetchPagination(searchValue);
+      if (pagination) {
+        setNumPages(pagination.totalPages);
+        setTotalProducts(pagination.totalResults);
+      } else {
+        setNumPages(1);
+      }
+    };
+    fetchAPIData();
   }, [searchValue]);
 
   return (

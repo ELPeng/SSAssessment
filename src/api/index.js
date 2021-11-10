@@ -1,29 +1,31 @@
 const url = "http://api.searchspring.net/api/search/search.json?siteId=scmq7n";
 
+// Fetch search results and retrieve pagination prop
 export const fetchPageData = async (query, page) => {
   let changeableUrl = url;
   let filteredQuery = query.replace(/[^a-zA-Z ]/g, "");
-  //   need to update to clean up query later
 
+  console.log({ query });
+  console.log({ page });
+
+  // Fetch all products if search is empty or contains invalid characters
   changeableUrl = filteredQuery
     ? `${url}&q=${filteredQuery}&resultsFormat=native&page=${page}`
     : `${url}&resultsFormat=native&page=${page}`;
   try {
     const response = await fetch(changeableUrl);
     const { results, pagination } = await response.json();
-
     if (!results.length) return { results: null, pagination };
-    console.log({ results });
     return { results, pagination };
   } catch (error) {
     return error;
   }
 };
 
+// Fetch pagination data
 export const fetchPagination = async (query) => {
-  let changeableUrl = url;
-  // need to update to clean up query later
-  changeableUrl = `${url}&q=${query}&resultsFormat=native}`;
+  let filteredQuery = query.replace(/[^a-zA-Z ]/g, "");
+  let changeableUrl = `${url}&q=${filteredQuery}&resultsFormat=native}`;
   try {
     const response = await fetch(changeableUrl);
     const { pagination } = await response.json();

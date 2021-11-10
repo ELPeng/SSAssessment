@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-
 import SearchIcon from "@mui/icons-material/Search";
-
-import useStyles from "./styles";
 import {
   AppBar,
   Toolbar,
@@ -12,6 +9,7 @@ import {
   IconButton,
 } from "@mui/material";
 
+import useStyles from "./styles";
 import { fetchPageData } from "../../api";
 
 const Header = ({ setSearchValue, setProducts, setCurrentPage }) => {
@@ -22,9 +20,9 @@ const Header = ({ setSearchValue, setProducts, setCurrentPage }) => {
     e.preventDefault();
     const { results } = await fetchPageData(searchText, 1);
     setProducts(results);
+    setCurrentPage(1);
     setSearchValue(searchText);
     setSearchText("");
-    setCurrentPage(1);
   };
 
   return (

@@ -4,7 +4,7 @@ import useStyles from "./styles";
 const NoResults = ({ value }) => {
   const classes = useStyles();
   if (!value) return null;
-  console.log(value);
+
   return (
     <div className={classes.content}>
       <div className={classes.toolbar} />

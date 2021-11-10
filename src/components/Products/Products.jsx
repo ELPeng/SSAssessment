@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Typography } from "@mui/material";
 import Product from "./Product/Product";
 
@@ -8,6 +8,9 @@ import NoResults from "./NoResults/NoResults";
 const Products = ({ products, searchValue, range, totalProducts }) => {
   const classes = useStyles();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [products]);
   if (!products) return <NoResults value={searchValue} />;
 
   return (
@@ -18,7 +21,7 @@ const Products = ({ products, searchValue, range, totalProducts }) => {
       <Typography variant="h6">
         SHOWING {range.begin} - {range.end} OF {totalProducts} RESULTS FOR
         {searchValue.replace(/[^a-zA-Z ]/g, "")
-          ? `"${searchValue.toUpperCase()}"`
+          ? ` "${searchValue.toUpperCase()}"`
           : " ALL PRODUCTS"}
       </Typography>
 
