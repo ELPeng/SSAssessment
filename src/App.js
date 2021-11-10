@@ -64,6 +64,9 @@ function App() {
           searchValue={searchValue}
           range={pageRange}
           totalProducts={totalProducts}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          numPages={numPages}
         />
         <PaginationButtons
           currentPage={currentPage}

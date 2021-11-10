@@ -4,7 +4,7 @@ import useStyles from "./styles";
 
 const PaginationButtons = ({ currentPage, setCurrentPage, numPages }) => {
   const classes = useStyles();
-
+  let isMobile = window.innerWidth < 800;
   const handleChangePage = (event, value) => {
     setCurrentPage(value);
   };
@@ -14,6 +14,7 @@ const PaginationButtons = ({ currentPage, setCurrentPage, numPages }) => {
         page={currentPage}
         count={numPages}
         onChange={handleChangePage}
+        size={isMobile ? "small" : "medium"}
       />
     </div>
   );

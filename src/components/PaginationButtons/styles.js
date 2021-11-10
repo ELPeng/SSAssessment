@@ -5,10 +5,10 @@ export default makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
     display: "flex",
     justifyContent: "center",
     paddingTop: 30,
+    paddingBottom: 30,
   },
   root: {
     flexGrow: 1,

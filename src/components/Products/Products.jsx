@@ -1,11 +1,20 @@
 import React, { useEffect } from "react";
 import { Grid, Typography } from "@mui/material";
 import Product from "./Product/Product";
+import PaginationButtons from "../PaginationButtons/PaginationButtons";
 
 import useStyles from "./styles";
 import NoResults from "./NoResults/NoResults";
 
-const Products = ({ products, searchValue, range, totalProducts }) => {
+const Products = ({
+  products,
+  searchValue,
+  range,
+  totalProducts,
+  currentPage,
+  setCurrentPage,
+  numPages,
+}) => {
   const classes = useStyles();
 
   useEffect(() => {
@@ -24,8 +33,12 @@ const Products = ({ products, searchValue, range, totalProducts }) => {
           ? ` "${searchValue.toUpperCase()}"`
           : " ALL PRODUCTS"}
       </Typography>
-
-      <div className={classes.toolbar} />
+      <PaginationButtons
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        numPages={numPages}
+      />
+      {/* <div className={classes.toolbar} /> */}
       <Grid container justifyContent="center" spacing={4}>
         {products.map((product) => {
           return (
