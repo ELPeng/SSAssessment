@@ -1,4 +1,4 @@
-const url = "http://api.searchspring.net/api/search/search.json?siteId=scmq7n";
+const url = "https://api.searchspring.net/api/search/search.json?siteId=scmq7n";
 
 // Fetch search results and retrieve pagination prop
 export const fetchPageData = async (query, page) => {
