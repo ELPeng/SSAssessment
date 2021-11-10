@@ -16,14 +16,13 @@ const Products = ({ products, searchValue, range, totalProducts }) => {
       <Typography variant="h3" gutterBottom>
         Products
       </Typography>
-      {searchValue ? (
-        <Typography variant="h5">
-          SHOWING {range.begin} - {range.end} OF {totalProducts} RESULTS FOR "
-          {searchValue.toUpperCase()}"
-        </Typography>
-      ) : (
-        ""
-      )}
+
+      <Typography variant="h5">
+        SHOWING {range.begin} - {range.end} OF {totalProducts} RESULTS FOR
+        {searchValue.replace(/[^a-zA-Z ]/g, "")
+          ? `"${searchValue.toUpperCase()}"`
+          : " ALL PRODUCTS"}
+      </Typography>
 
       <div className={classes.toolbar} />
       <Grid container justifyContent="center" spacing={4}>

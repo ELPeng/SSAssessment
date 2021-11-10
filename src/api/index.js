@@ -2,10 +2,11 @@ const url = "http://api.searchspring.net/api/search/search.json?siteId=scmq7n";
 
 export const fetchPageData = async (query, page) => {
   let changeableUrl = url;
+  let filteredQuery = query.replace(/[^a-zA-Z ]/g, "");
   //   need to update to clean up query later
 
-  changeableUrl = query
-    ? `${url}&q=${query}&resultsFormat=native&page=${page}`
+  changeableUrl = filteredQuery
+    ? `${url}&q=${filteredQuery}&resultsFormat=native&page=${page}`
     : `${url}&resultsFormat=native&page=${page}`;
   try {
     const response = await fetch(changeableUrl);
