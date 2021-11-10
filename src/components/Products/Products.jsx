@@ -6,14 +6,7 @@ import Product from "./Product/Product";
 import useStyles from "./styles";
 import NoResults from "../NoResults/NoResults";
 
-const Products = ({
-  products,
-  searchValue,
-  setCurrentPage,
-  numPages,
-  range,
-  totalProducts,
-}) => {
+const Products = ({ products, searchValue, range, totalProducts }) => {
   const classes = useStyles();
 
   if (!products) return <NoResults value={searchValue} />;
