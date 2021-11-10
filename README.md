@@ -1,5 +1,8 @@
 # SearchSpring Take Home Assessment
 
+Website Link: https://serene-northcutt-db99f5.netlify.app/
+Primary Frameworks/Libraries used: React, MaterialUI
+
 ## Invalid Search Handling
 
 - For most search errors, I tried to keep consistent with the full implementation example.
