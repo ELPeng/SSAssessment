@@ -3,7 +3,16 @@ import Products from "./components/Products/Products";
 import PaginationButtons from "./components/PaginationButtons/PaginationButtons";
 
 import { useState, useEffect } from "react";
+import { createTheme, ThemeProvider } from "@material-ui/core";
 import { fetchPageData, fetchPagination } from "./api";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#3a23ad",
+    },
+  },
+});
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -22,11 +31,26 @@ function App() {
   }, [searchValue]);
 
   return (
-    <div className="App">
-      <Header setProducts={setProducts} setSearchValue={setSearchValue} />
-      <Products products={products} />
-      <PaginationButtons setCurrentPage={setCurrentPage} numPages={numPages} />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Header
+          setProducts={setProducts}
+          setCurrentPage={setCurrentPage}
+          setSearchValue={setSearchValue}
+        />
+        <Products
+          products={products}
+          searchValue={searchValue}
+          setCurrentPage={setCurrentPage}
+          numPages={numPages}
+        />
+        <PaginationButtons
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          numPages={numPages}
+        />
+      </div>
+    </ThemeProvider>
   );
 }
 

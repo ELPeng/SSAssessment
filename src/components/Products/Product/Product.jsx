@@ -29,12 +29,13 @@ const Product = ({ product }) => {
                 variant="subtitle1"
                 className={onSale ? classes.msrpSale : ""}
               >
-                {`$${product.msrp}`}{" "}
+                {`$${product.msrp}`}
               </Typography>
               {onSale ? (
                 <Typography
                   variant="subtitle1"
                   className={classes.salePrice}
+                  fontWeight="bold"
                 >{`$${product.price}`}</Typography>
               ) : (
                 ""

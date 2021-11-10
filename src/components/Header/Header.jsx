@@ -1,32 +1,45 @@
 import React, { useState } from "react";
-import { AppBar, Toolbar, Typography, TextField, Box } from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
+
+import SearchIcon from "@mui/icons-material/Search";
 
 import useStyles from "./styles";
-import { Button } from "@mui/material";
+import { AppBar, Toolbar, Typography, TextField, Box } from "@mui/material";
 
 import { fetchPageData } from "../../api";
 
-const Header = ({ setSearchValue, setProducts }) => {
+const Header = ({ setSearchValue, setProducts, setCurrentPage }) => {
   const [searchText, setSearchText] = useState("");
   const classes = useStyles();
 
-  console.log(searchText);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const products = await fetchPageData(searchText, 1);
     setProducts(products);
     setSearchValue(searchText);
-    console.log(products);
+    setSearchText("");
+    setCurrentPage(1);
   };
 
   return (
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
         <Typography variant="h5" className={classes.title}>
-          Search API Assessment
+          SearchSpring
         </Typography>
-        <Box component="form" display="flex" onSubmit={handleSubmit}>
+        <Box className={classes.box} component="form" onSubmit={handleSubmit}>
+          <div className={classes.searchContainer}>
+            <SearchIcon fontSize="large" className={classes.searchIcon} />
+            <TextField
+              className={classes.searchInput}
+              label="Search for Brand, Color, Size..."
+              variant="filled"
+              size="small"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+          </div>
+        </Box>
+        {/* <Box className={classes.box} component="form" onSubmit={handleSubmit}>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -38,11 +51,16 @@ const Header = ({ setSearchValue, setProducts }) => {
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
-            <Button type="submit" className={classes.button}>
-              Submit
-            </Button>
+
+            <IconButton
+              type="submit"
+              color="primary"
+              aria-label="search button"
+            >
+              <SearchIcon />
+            </IconButton>
           </div>
-        </Box>
+        </Box> */}
       </Toolbar>
     </AppBar>
   );

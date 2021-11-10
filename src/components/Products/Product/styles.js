@@ -25,8 +25,7 @@ export default makeStyles((theme) => ({
     justifyContent: "center",
   },
   salePrice: {
-    color: "#3a23ad",
-    fontWeight: 900,
+    color: theme.palette.primary.main,
   },
   msrpSale: {
     color: "#a6a6a6",

@@ -1,17 +1,20 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 import Product from "./Product/Product";
 
 import useStyles from "./styles";
 
-const Products = ({ products }) => {
+const Products = ({ products, searchValue, setCurrentPage }) => {
   const classes = useStyles();
+
   console.log(products);
-  if (!products) return null;
+  if (!products) return `NO RESULTS FOR "${searchValue.toUpperCase()}" FOUND."`;
   return (
     <main className={classes.content}>
-      <h1>Products</h1>
+      <Typography variant="h3">Products</Typography>
+      <Typography variant="body1">Products</Typography>
+
       <div className={classes.toolbar} />
       <Grid container justifyContent="center" spacing={4}>
         {products.map((product, i) => {

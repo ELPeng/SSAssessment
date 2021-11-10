@@ -1,5 +1,4 @@
-import { alpha, makeStyles } from "@material-ui/core/styles";
-import { SportsRugbySharp } from "@material-ui/icons";
+import { alpha, makeStyles } from "@material-ui/core";
 
 export default makeStyles((theme) => ({
   title: {
@@ -8,40 +7,45 @@ export default makeStyles((theme) => ({
       display: "block",
     },
   },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.85),
-    "&:hover": { backgroundColor: theme.palette.common.white },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
+  box: {
+    width: "50%",
+  },
+  //   search: {
+  //     position: "relative",
+  //     borderRadius: theme.shape.borderRadius,
+  //     backgroundColor: theme.palette.common.white,
+  //     "&:hover": { backgroundColor: theme.palette.common.white },
+  //     marginRight: theme.spacing(2),
+  //     marginLeft: 0,
+  //     width: "100%",
+  //   },
+  searchIcon: {
+    alignSelf: "center",
+    marginRight: "10px",
+  },
+  searchContainer: {
+    display: "flex",
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(3),
       width: "auto",
     },
+    // backgroundColor: alpha(theme.palette.common.white, 0.15),
+    // paddingLeft: "20px",
+    // paddingRight: "20px",
+    // marginTop: "5px",
+    // marginBottom: "5px",
   },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inputRoot: {
-    color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
+  searchInput: {
+    color: "white",
     width: "100%",
-    [theme.breakpoints.up("md")]: { width: "20ch" },
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: "white",
   },
+
   toolbar: {
     display: "flex",
     justifyContent: "space-between",
+    backgroundColor: theme.palette.primary.main,
   },
 }));
