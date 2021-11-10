@@ -4,12 +4,14 @@ import { Grid, Typography } from "@mui/material";
 import Product from "./Product/Product";
 
 import useStyles from "./styles";
+import NoResults from "../NoResults/NoResults";
 
 const Products = ({ products, searchValue, setCurrentPage }) => {
   const classes = useStyles();
 
   console.log(products);
-  if (!products) return `NO RESULTS FOR "${searchValue.toUpperCase()}" FOUND."`;
+  if (!products) return <NoResults value={searchValue} />;
+  //   `NO RESULTS FOR "${searchValue.toUpperCase()}" FOUND."`;
   return (
     <main className={classes.content}>
       <Typography variant="h3">Products</Typography>

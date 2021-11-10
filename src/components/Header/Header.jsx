@@ -3,7 +3,14 @@ import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 
 import useStyles from "./styles";
-import { AppBar, Toolbar, Typography, TextField, Box } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  TextField,
+  Box,
+  IconButton,
+} from "@mui/material";
 
 import { fetchPageData } from "../../api";
 
@@ -28,9 +35,12 @@ const Header = ({ setSearchValue, setProducts, setCurrentPage }) => {
         </Typography>
         <Box className={classes.box} component="form" onSubmit={handleSubmit}>
           <div className={classes.searchContainer}>
-            <SearchIcon fontSize="large" className={classes.searchIcon} />
+            <IconButton onClick={handleSubmit}>
+              <SearchIcon fontSize="large" className={classes.searchIcon} />
+            </IconButton>
             <TextField
               className={classes.searchInput}
+              error
               label="Search for Brand, Color, Size..."
               variant="filled"
               size="small"
@@ -39,28 +49,6 @@ const Header = ({ setSearchValue, setProducts, setCurrentPage }) => {
             />
           </div>
         </Box>
-        {/* <Box className={classes.box} component="form" onSubmit={handleSubmit}>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <TextField
-              id="search-text"
-              label="Search..."
-              variant="filled"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-            />
-
-            <IconButton
-              type="submit"
-              color="primary"
-              aria-label="search button"
-            >
-              <SearchIcon />
-            </IconButton>
-          </div>
-        </Box> */}
       </Toolbar>
     </AppBar>
   );
